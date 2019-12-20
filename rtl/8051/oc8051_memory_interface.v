@@ -550,7 +550,7 @@ begin
   if (rst) begin
     idat_cur <= #1 32'h0;
     idat_old <= #1 32'h0;
-  end else if ((iack_i | ea_rom_sel) & (inc_pc | pc_wr_r2)) begin
+  end else if (((iack_i | ea_rom_sel) & (inc_pc | pc_wr_r2)) | pc_wr_r2) begin
     idat_cur <= #1 ea_rom_sel ? idat_onchip : idat_i;
     idat_old <= #1 idat_cur;
   end
